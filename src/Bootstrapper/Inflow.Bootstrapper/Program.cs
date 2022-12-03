@@ -1,15 +1,24 @@
-var builder = WebApplication.CreateBuilder(args);
+using Inflow.Modules.Customers.API;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+//register the modules
+builder.Services.AddCustomersModule();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+//initialize modules
+app.UseCustomersModule();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapGet("/", context => context.Response.WriteAsync("Hello!"));
+});
 
 app.Run();

@@ -9,9 +9,9 @@ namespace Inflow.Modules.Customers.Core.Domain.Repositories
 {
     internal interface ICustomerRepository
     {
-        Task<bool> ExistsAsync(string name);
-        Task<Customer> GetAsync(Guid id);
-        Task AddAsync(Customer customer);
-        Task UpdateAsync(Customer customer);
+        Task<bool> ExistsAsync(string name, CancellationToken cancellationToken = default);
+        Task<Customer> GetAsync(Guid id, CancellationToken cancellationToken = default);
+        Task AddAsync(Customer customer, CancellationToken cancellationToken = default);
+        Task UpdateAsync(Customer customer, CancellationToken cancellationToken = default);
     }
 }

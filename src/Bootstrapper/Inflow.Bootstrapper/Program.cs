@@ -14,7 +14,6 @@ var app = builder.Build();
 //initialize modules
 app.UseCustomersModule();
 
-
 app.UseAuthorization();
 
 app.UseRouting();

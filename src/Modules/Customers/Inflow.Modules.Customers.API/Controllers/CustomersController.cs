@@ -11,7 +11,7 @@ namespace Inflow.Modules.Customers.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CustomersController : Controller
+    internal class CustomersController : Controller
     {
         private readonly ICommandDispatcher _commandDispatcher;
 
@@ -20,6 +20,7 @@ namespace Inflow.Modules.Customers.API.Controllers
             _commandDispatcher = commandDispatcher;
         }
 
+        [HttpPost]
         public async Task<IActionResult> Post(CreateCustomer command)
         {
             await _commandDispatcher.SendAsync(command);

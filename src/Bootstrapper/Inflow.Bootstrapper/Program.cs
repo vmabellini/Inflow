@@ -3,20 +3,17 @@ using Inflow.Shared.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-
 //register the modules
-builder.Services.AddCustomersModule();
 builder.Services.AddModularInfrastructure();
+builder.Services.AddCustomersModule();
 
 var app = builder.Build();
 
 //initialize modules
 app.UseCustomersModule();
 
-app.UseAuthorization();
-
 app.UseRouting();
+app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();

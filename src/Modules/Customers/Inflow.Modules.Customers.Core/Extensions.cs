@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Inflow.Modules.Customers.Core.DAL;
+using Inflow.Modules.Customers.Core.DAL.Repositories;
+using Inflow.Modules.Customers.Core.Domain.Repositories;
+using Inflow.Shared.Infrastructure.Postgres;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -14,6 +18,9 @@ namespace Inflow.Modules.Customers.Core
     {
         public static IServiceCollection AddCore(this IServiceCollection services)
         {
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddPostgres<CustomersDbContext>();
+
             return services;
         }
 

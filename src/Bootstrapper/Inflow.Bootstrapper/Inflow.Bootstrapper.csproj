@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Modules\Customers\Inflow.Modules.Customers.API\Inflow.Modules.Customers.API.csproj" />
     <ProjectReference Include="..\..\Shared\Inflow.Shared.Abstractions\Inflow.Shared.Abstractions.csproj" />
     <ProjectReference Include="..\..\Shared\Inflow.Shared.Infrastructure\Inflow.Shared.Infrastructure.csproj" />

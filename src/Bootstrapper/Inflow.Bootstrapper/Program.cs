@@ -4,8 +4,8 @@ using Inflow.Shared.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 //register the modules
-builder.Services.AddModularInfrastructure();
 builder.Services.AddCustomersModule();
+builder.Services.AddModularInfrastructure();
 
 var app = builder.Build();
 

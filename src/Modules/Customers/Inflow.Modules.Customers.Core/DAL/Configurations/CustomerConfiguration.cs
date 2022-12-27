@@ -17,31 +17,38 @@ namespace Inflow.Modules.Customers.Core.DAL.Configurations
         {
             builder.HasIndex(x => x.Email).IsUnique(); //guarantees the uniqueness
             builder.Property(x => x.Email)
+                .IsRequired()
                 .HasMaxLength(100)
                 .HasConversion(x => x.Value, x => new Email(x)); //converts a value object to a string and vice-versa
 
             builder.HasIndex(x => x.Name).IsUnique();
             builder.Property(x => x.Name)
+                .IsRequired(false)
                 .HasMaxLength(50)
                 .HasConversion(x => x.Value, x => new Name(x));
 
             builder.Property(x => x.FullName)
+                .IsRequired(false)
                 .HasMaxLength(100)
                 .HasConversion(x => x.Value, x => new FullName(x));
 
             builder.Property(x => x.Address)
+               .IsRequired(false)
                .HasMaxLength(200)
                .HasConversion(x => x.Value, x => new Address(x));
 
             builder.Property(x => x.Identity)
+               .IsRequired(false)
                .HasMaxLength(40)
                .HasConversion(x => x.ToString(), x => Identity.From(x));
 
             builder.Property(x => x.Nationatity)
+               .IsRequired(false)
                .HasMaxLength(2)
                .HasConversion(x => x.Value, x => new Nationality(x));
 
             builder.Property(x => x.Notes)
+               .IsRequired(false)
                .HasMaxLength(500);
         }
     }

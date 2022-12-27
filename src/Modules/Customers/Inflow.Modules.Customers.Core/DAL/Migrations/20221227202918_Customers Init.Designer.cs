@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Inflow.Modules.Customers.Core.DAL.Migrations
 {
     [DbContext(typeof(CustomersDbContext))]
-    [Migration("20221222200121_Customers Init")]
+    [Migration("20221227202918_Customers Init")]
     partial class CustomersInit
     {
         /// <inheritdoc />
@@ -33,7 +33,6 @@ namespace Inflow.Modules.Customers.Core.DAL.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
@@ -49,12 +48,10 @@ namespace Inflow.Modules.Customers.Core.DAL.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("Identity")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("character varying(40)");
 
@@ -62,17 +59,14 @@ namespace Inflow.Modules.Customers.Core.DAL.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
                     b.Property<string>("Nationatity")
-                        .IsRequired()
                         .HasMaxLength(2)
                         .HasColumnType("character varying(2)");
 
                     b.Property<string>("Notes")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)");
 

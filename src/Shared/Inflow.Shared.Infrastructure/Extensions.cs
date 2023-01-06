@@ -3,6 +3,7 @@ using Inflow.Shared.Abstractions.Time;
 using Inflow.Shared.Infrastructure.Api;
 using Inflow.Shared.Infrastructure.Commands;
 using Inflow.Shared.Infrastructure.Postgres;
+using Inflow.Shared.Infrastructure.Queries;
 using Inflow.Shared.Infrastructure.Time;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,7 @@ namespace Inflow.Shared.Infrastructure
         {
             services
                 .AddCommands()
+                .AddQueries()
                 .AddPostgresOptions()
                 .AddSingleton<IClock, UtcClock>()
                 .AddControllers()

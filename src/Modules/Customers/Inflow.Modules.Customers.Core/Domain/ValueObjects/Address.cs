@@ -23,6 +23,6 @@ namespace Inflow.Modules.Customers.Core.Domain.ValueObjects
 
         public static implicit operator Address(string value) => new Address(value);
 
-        public static implicit operator string(Address value) => value.Value;
+        public static implicit operator string(Address value) => value?.Value;
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Inflow.Shared.Abstractions.Commands;
+using Inflow.Shared.Abstractions.Dispatchers;
 using Inflow.Shared.Abstractions.Time;
 using Inflow.Shared.Infrastructure.Api;
 using Inflow.Shared.Infrastructure.Commands;
+using Inflow.Shared.Infrastructure.Dispatchers;
 using Inflow.Shared.Infrastructure.Postgres;
 using Inflow.Shared.Infrastructure.Queries;
 using Inflow.Shared.Infrastructure.Time;
@@ -24,6 +26,7 @@ namespace Inflow.Shared.Infrastructure
             services
                 .AddCommands()
                 .AddQueries()
+                .AddSingleton<IDispatcher, InMemoryDispatcher>()
                 .AddPostgresOptions()
                 .AddSingleton<IClock, UtcClock>()
                 .AddControllers()

@@ -29,6 +29,6 @@ namespace Inflow.Shared.Abstractions.Kernel.ValueObjects
 
         public static implicit operator Nationality(string value) => new Nationality(value);
 
-        public static implicit operator string(Nationality value) => value.Value;
+        public static implicit operator string(Nationality value) => value?.Value;
     }
 }

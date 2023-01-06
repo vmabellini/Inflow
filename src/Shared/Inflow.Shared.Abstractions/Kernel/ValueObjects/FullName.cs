@@ -18,6 +18,6 @@ namespace Inflow.Shared.Abstractions.Kernel.ValueObjects
 
         public static implicit operator FullName(string value) => new FullName(value);
 
-        public static implicit operator string(FullName value) => value.Value;
+        public static implicit operator string(FullName value) => value?.Value;
     }
 }

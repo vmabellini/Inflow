@@ -1,4 +1,5 @@
 ﻿using Inflow.Modules.Customers.Core;
+using Inflow.Shared.Abstractions.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -11,20 +12,18 @@ using System.Threading.Tasks;
 [assembly: InternalsVisibleTo("Inflow.Bootstrapper")]
 namespace Inflow.Modules.Customers.API
 {
-    internal static class Extensions
+    internal class CustomersModule : IModule
     {
-        public static IServiceCollection AddCustomersModule(this IServiceCollection services)
+        public string Name => "Customers";
+
+        public void Register(IServiceCollection services)
         {
             services.AddCore();
-
-            return services;
         }
 
-        public static IApplicationBuilder UseCustomersModule(this IApplicationBuilder app)
+        public void Use(IApplicationBuilder app)
         {
             app.UseCore();
-
-            return app;
         }
     }
 }

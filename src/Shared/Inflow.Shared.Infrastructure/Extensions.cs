@@ -21,11 +21,11 @@ namespace Inflow.Shared.Infrastructure
 {
     internal static class Extensions
     {
-        public static IServiceCollection AddModularInfrastructure(this IServiceCollection services)
+        public static IServiceCollection AddModularInfrastructure(this IServiceCollection services, IList<System.Reflection.Assembly> assemblies)
         {
             services
-                .AddCommands()
-                .AddQueries()
+                .AddCommands(assemblies)
+                .AddQueries(assemblies)
                 .AddSingleton<IDispatcher, InMemoryDispatcher>()
                 .AddPostgresOptions()
                 .AddSingleton<IClock, UtcClock>()

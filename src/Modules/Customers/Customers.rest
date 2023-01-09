@@ -1,13 +1,15 @@
 @url = http://localhost:5079/customers
 @customerId = 90bfbdf3-0d2f-4ebc-bca2-854c6d7935f8
 
+### CREATE A NEW CUSTOMER
+
 POST {{url}}
 Content-Type: application/json
 
 {
-  "email": "test@gmail.com"
+  "email": "test1@gmail.com"
 }
 
-###
+### GET CUSTOMER BY ID
 
 GET {{url}}/{{customerId}}

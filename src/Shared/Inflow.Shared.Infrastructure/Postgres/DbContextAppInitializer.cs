@@ -38,6 +38,20 @@ namespace Inflow.Shared.Infrastructure.Postgres
 
                 await dbContext.Database.MigrateAsync(cancellationToken);
             }
+
+            var initializers = scope.ServiceProvider.GetServices<IInitializer>();
+            foreach (var initializer in initializers)
+            {
+                try
+                {
+                    _logger.LogInformation($"Running the initializer: {initializer.GetType().Name}...");
+                    await initializer.InitAsync();
+                }
+                catch (Exception exception)
+                {
+                    _logger.LogError(exception, exception.Message);
+                }
+            }
         }
 
         public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;

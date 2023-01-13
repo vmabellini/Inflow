@@ -1,12 +1,16 @@
 ﻿using Inflow.Shared.Abstractions.Commands;
 using Inflow.Shared.Abstractions.Dispatchers;
+using Inflow.Shared.Abstractions.Storage;
 using Inflow.Shared.Abstractions.Time;
 using Inflow.Shared.Infrastructure.Api;
+using Inflow.Shared.Infrastructure.Auth;
 using Inflow.Shared.Infrastructure.Commands;
 using Inflow.Shared.Infrastructure.Dispatchers;
 using Inflow.Shared.Infrastructure.Postgres;
 using Inflow.Shared.Infrastructure.Queries;
+using Inflow.Shared.Infrastructure.Storage;
 using Inflow.Shared.Infrastructure.Time;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +24,7 @@ using System.Threading.Tasks;
 [assembly: InternalsVisibleTo("Inflow.Bootstrapper")]
 namespace Inflow.Shared.Infrastructure
 {
-    internal static class Extensions
+    public static class Extensions
     {
         public static IServiceCollection AddModularInfrastructure(this IServiceCollection services, IList<System.Reflection.Assembly> assemblies)
         {
@@ -43,6 +47,11 @@ namespace Inflow.Shared.Infrastructure
             }
 
             services
+                .AddMemoryCache()
+                .AddHttpClient()
+                .AddSingleton<IRequestStorage, RequestStorage>()
+                .AddSingleton<IHttpContextAccessor, HttpContextAccessor>()
+                .AddAuth()
                 .AddCommands(assemblies)
                 .AddQueries(assemblies)
                 .AddSingleton<IDispatcher, InMemoryDispatcher>()

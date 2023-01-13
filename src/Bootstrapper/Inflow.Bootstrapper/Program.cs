@@ -2,7 +2,9 @@ using Inflow.Modules.Customers.API;
 using Inflow.Shared.Infrastructure;
 using Inflow.Shared.Infrastructure.Modules;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication
+    .CreateBuilder(args)
+    .ConfigureModules();
 
 var assemblies = ModuleLoader.LoadAssemblies(builder.Configuration);
 var modules = ModuleLoader.LoadModules(assemblies);

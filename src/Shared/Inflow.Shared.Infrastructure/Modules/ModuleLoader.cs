@@ -13,6 +13,8 @@ namespace Inflow.Shared.Infrastructure.Modules
     {
         public static IList<Assembly> LoadAssemblies(IConfiguration configuration)
         {
+            const string MODULE_PART = "Inflow.Modules.";
+
             //load all assemblies in the current domain
             var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
 
@@ -23,6 +25,27 @@ namespace Inflow.Shared.Infrastructure.Modules
             var files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")
                 .Where(x => !locations.Contains(x, StringComparer.InvariantCultureIgnoreCase))
                 .ToList();
+
+            var disabledModules = new List<string>();
+            foreach (var file in files)
+            {
+                if (!file.Contains(MODULE_PART))
+                {
+                    continue;
+                }
+
+                var moduleName = file.Split(MODULE_PART)[1].Split(".")[0].ToLowerInvariant();
+                var enabled = configuration.GetValue<bool>($"{moduleName}:module:enabled");
+                if (!enabled)
+                {
+                    disabledModules.Add(file);
+                }
+            }
+
+            foreach (var disabledModule in disabledModules)
+            {
+                files.Remove(disabledModule);
+            }
 
             //loads all scanned assemblies
             files.ForEach(x => assemblies.Add(AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(x))));

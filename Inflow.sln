@@ -11,15 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{412A90
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customers", "Customers", "{816B13D1-7396-448E-8193-E87FDB0E267A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inflow.Shared.Abstractions", "src\Shared\Inflow.Shared.Abstractions\Inflow.Shared.Abstractions.csproj", "{C710FD46-8534-4531-8307-894679F20971}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inflow.Shared.Abstractions", "src\Shared\Inflow.Shared.Abstractions\Inflow.Shared.Abstractions.csproj", "{C710FD46-8534-4531-8307-894679F20971}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inflow.Shared.Infrastructure", "src\Shared\Inflow.Shared.Infrastructure\Inflow.Shared.Infrastructure.csproj", "{EE4802D5-2D89-4B6D-A686-77D5728F7379}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inflow.Shared.Infrastructure", "src\Shared\Inflow.Shared.Infrastructure\Inflow.Shared.Infrastructure.csproj", "{EE4802D5-2D89-4B6D-A686-77D5728F7379}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inflow.Modules.Customers.Core", "src\Modules\Customers\Inflow.Modules.Customers.Core\Inflow.Modules.Customers.Core.csproj", "{3D9920B4-E396-454E-8880-648B51873619}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inflow.Modules.Customers.Core", "src\Modules\Customers\Inflow.Modules.Customers.Core\Inflow.Modules.Customers.Core.csproj", "{3D9920B4-E396-454E-8880-648B51873619}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inflow.Modules.Customers.API", "src\Modules\Customers\Inflow.Modules.Customers.API\Inflow.Modules.Customers.API.csproj", "{62C75A14-B9BA-49BF-93F0-0B74B619C1E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inflow.Modules.Customers.API", "src\Modules\Customers\Inflow.Modules.Customers.API\Inflow.Modules.Customers.API.csproj", "{62C75A14-B9BA-49BF-93F0-0B74B619C1E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inflow.Bootstrapper", "src\Bootstrapper\Inflow.Bootstrapper\Inflow.Bootstrapper.csproj", "{8AA625DB-2C8D-4D81-B94B-329F4F23740D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inflow.Bootstrapper", "src\Bootstrapper\Inflow.Bootstrapper\Inflow.Bootstrapper.csproj", "{8AA625DB-2C8D-4D81-B94B-329F4F23740D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

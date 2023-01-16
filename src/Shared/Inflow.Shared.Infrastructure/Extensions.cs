@@ -6,6 +6,7 @@ using Inflow.Shared.Infrastructure.Api;
 using Inflow.Shared.Infrastructure.Auth;
 using Inflow.Shared.Infrastructure.Commands;
 using Inflow.Shared.Infrastructure.Dispatchers;
+using Inflow.Shared.Infrastructure.Modules;
 using Inflow.Shared.Infrastructure.Postgres;
 using Inflow.Shared.Infrastructure.Queries;
 using Inflow.Shared.Infrastructure.Storage;
@@ -56,6 +57,7 @@ namespace Inflow.Shared.Infrastructure
                 .AddQueries(assemblies)
                 .AddSingleton<IDispatcher, InMemoryDispatcher>()
                 .AddPostgresOptions()
+                .AddModuleRequests()
                 .AddSingleton<IClock, UtcClock>()
                 .AddControllers()
                 .ConfigureApplicationPartManager(manager =>

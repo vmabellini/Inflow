@@ -1,4 +1,5 @@
-﻿using Inflow.Modules.Customers.Core.DAL;
+﻿using Inflow.Modules.Customers.Core.Clients;
+using Inflow.Modules.Customers.Core.DAL;
 using Inflow.Modules.Customers.Core.DAL.Repositories;
 using Inflow.Modules.Customers.Core.Domain.Repositories;
 using Inflow.Shared.Infrastructure.Postgres;
@@ -18,6 +19,7 @@ namespace Inflow.Modules.Customers.Core
     {
         public static IServiceCollection AddCore(this IServiceCollection services)
         {
+            services.AddSingleton<IUserApiClient, UserApiClient>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddPostgres<CustomersDbContext>();
 

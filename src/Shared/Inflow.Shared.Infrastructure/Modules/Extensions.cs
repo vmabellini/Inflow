@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Inflow.Shared.Abstractions.Modules;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileSystemGlobbing.Internal;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -10,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace Inflow.Shared.Infrastructure.Modules
 {
-    internal static class Extensions
+    public static class Extensions
     {
-        public static WebApplicationBuilder ConfigureModules(this WebApplicationBuilder builder)
+        internal static WebApplicationBuilder ConfigureModules(this WebApplicationBuilder builder)
         {
             builder.Host.ConfigureAppConfiguration((ctx, cfg) =>
             {
@@ -27,5 +29,18 @@ namespace Inflow.Shared.Infrastructure.Modules
 
             return builder;
         }
+
+        internal static IServiceCollection AddModuleRequests(this IServiceCollection services)
+        {
+            services.AddSingleton<IModuleRegistry, ModuleRegistry>();
+            services.AddSingleton<IModuleSubscriber, ModuleSubscriber>();
+            services.AddSingleton<IModuleClient, ModuleClient>();
+            services.AddSingleton<IModuleSerializer, JsonModuleSerializer>();
+
+            return services;
+        }
+
+        public static IModuleSubscriber UseModuleRequests(this IApplicationBuilder app)
+            => app.ApplicationServices.GetRequiredService<IModuleSubscriber>();
     }
 }

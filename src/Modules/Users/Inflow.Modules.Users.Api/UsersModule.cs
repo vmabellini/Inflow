@@ -7,6 +7,7 @@ using Inflow.Modules.Users.Core.Queries;
 using Inflow.Shared.Abstractions.Modules;
 using Inflow.Shared.Abstractions.Queries;
 using Inflow.Shared.Infrastructure.Modules;
+using Inflow.Shared.Abstractions.Dispatchers;
 
 namespace Inflow.Modules.Users.Api;
 
@@ -26,6 +27,9 @@ internal class UsersModule : IModule
         
     public void Use(IApplicationBuilder app)
     {
-
+        app.UseModuleRequests()
+            .Subscribe<GetUserByEmail, UserDetailsDto>("users/get",
+                (query, serviceProvider, cancellationToken) =>
+                    serviceProvider.GetRequiredService<IDispatcher>().QueryAsync(query, cancellationToken));
     }
 }

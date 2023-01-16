@@ -7,7 +7,7 @@ POST {{url}}
 Content-Type: application/json
 
 {
-  "email": "test1@gmail.com"
+  "email": "user5@inflow.io"
 }
 
 ### GET CUSTOMER BY ID

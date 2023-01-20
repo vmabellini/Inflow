@@ -9,6 +9,8 @@ using Inflow.Modules.Users.Core.Repositories;
 using Inflow.Shared.Abstractions;
 using Inflow.Shared.Abstractions.Commands;
 using Inflow.Shared.Abstractions.Time;
+using Inflow.Shared.Abstractions.Modules;
+using Inflow.Modules.Users.Core.Events;
 
 namespace Inflow.Modules.Users.Core.Commands.Handlers;
 
@@ -18,17 +20,23 @@ internal sealed class SignUpHandler : ICommandHandler<SignUp>
     private readonly IRoleRepository _roleRepository;
     private readonly IPasswordHasher<User> _passwordHasher;
     private readonly IClock _clock;
+    private readonly IModuleClient _moduleClient;
     private readonly RegistrationOptions _registrationOptions;
     private readonly ILogger<SignUpHandler> _logger;
 
-    public SignUpHandler(IUserRepository userRepository, IRoleRepository roleRepository,
-        IPasswordHasher<User> passwordHasher, IClock clock, 
-        RegistrationOptions registrationOptions, ILogger<SignUpHandler> logger)
+    public SignUpHandler(IUserRepository userRepository, 
+        IRoleRepository roleRepository,
+        IPasswordHasher<User> passwordHasher, 
+        IClock clock, 
+        IModuleClient moduleClient,
+        RegistrationOptions registrationOptions,
+        ILogger<SignUpHandler> logger)
     {
         _userRepository = userRepository;
         _roleRepository = roleRepository;
         _passwordHasher = passwordHasher;
         _clock = clock;
+        _moduleClient = moduleClient;
         _registrationOptions = registrationOptions;
         _logger = logger;
     }
@@ -74,6 +82,7 @@ internal sealed class SignUpHandler : ICommandHandler<SignUp>
             State = UserState.Active,
         };
         await _userRepository.AddAsync(user);
+        await _moduleClient.PublishAsync(new SignedUp(user.Id, user.Email, user.Role.Name), cancellationToken);
         _logger.LogInformation($"User with ID: '{user.Id}' has signed up.");
     }
 }

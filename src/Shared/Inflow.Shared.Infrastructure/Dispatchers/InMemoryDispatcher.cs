@@ -1,5 +1,6 @@
 ﻿using Inflow.Shared.Abstractions.Commands;
 using Inflow.Shared.Abstractions.Dispatchers;
+using Inflow.Shared.Abstractions.Events;
 using Inflow.Shared.Abstractions.Queries;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,15 @@ namespace Inflow.Shared.Infrastructure.Dispatchers
     {
         private readonly ICommandDispatcher _commandDispatcher;
         private readonly IQueryDispatcher _queryDispatcher;
+        private readonly IEventDispatcher _eventDispatcher;
 
         public InMemoryDispatcher(ICommandDispatcher commandDispatcher,
-            IQueryDispatcher queryDispatcher)
+            IQueryDispatcher queryDispatcher,
+            IEventDispatcher eventDispatcher)
         {
             _commandDispatcher = commandDispatcher;
             _queryDispatcher = queryDispatcher;
+            _eventDispatcher = eventDispatcher;
         }
 
         public Task<TResult> QueryAsync<TResult>(IQuery<TResult> query, CancellationToken token = default) where TResult : class 
@@ -26,5 +30,8 @@ namespace Inflow.Shared.Infrastructure.Dispatchers
 
         public Task SendAsync<TCommand>(TCommand command, CancellationToken cancellationToken) where TCommand : class, ICommand 
             => _commandDispatcher.SendAsync(command, cancellationToken);
+
+        public Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken) where TEvent : class, IEvent
+            => _eventDispatcher.PublishAsync(@event, cancellationToken);
     }
 }

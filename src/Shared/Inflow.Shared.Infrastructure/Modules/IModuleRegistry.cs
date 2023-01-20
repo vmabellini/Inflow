@@ -10,5 +10,8 @@ namespace Inflow.Shared.Infrastructure.Modules
     {
         ModuleRequestRegistration GetRequestRegistration(string path);
         void AddRequestAction(string path, ModuleRequestRegistration registration);
+
+        IEnumerable<ModuleBroadcastRegistration> GetBroadcastRegistrations(string key);
+        void AddBroadcastAction(ModuleBroadcastRegistration registration);
     }
 }

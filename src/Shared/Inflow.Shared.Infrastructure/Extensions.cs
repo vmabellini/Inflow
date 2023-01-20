@@ -7,6 +7,7 @@ using Inflow.Shared.Infrastructure.Auth;
 using Inflow.Shared.Infrastructure.Commands;
 using Inflow.Shared.Infrastructure.Dispatchers;
 using Inflow.Shared.Infrastructure.Events;
+using Inflow.Shared.Infrastructure.Messaging;
 using Inflow.Shared.Infrastructure.Modules;
 using Inflow.Shared.Infrastructure.Postgres;
 using Inflow.Shared.Infrastructure.Queries;
@@ -57,6 +58,7 @@ namespace Inflow.Shared.Infrastructure
                 .AddCommands(assemblies)
                 .AddQueries(assemblies)
                 .AddEvents(assemblies)
+                .AddMessaging()
                 .AddSingleton<IDispatcher, InMemoryDispatcher>()
                 .AddPostgresOptions()
                 .AddModuleRequests(assemblies)

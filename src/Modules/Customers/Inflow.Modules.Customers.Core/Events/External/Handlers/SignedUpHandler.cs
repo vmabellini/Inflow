@@ -11,6 +11,7 @@ namespace Inflow.Modules.Customers.Core.Events.External.Handlers
     {
         public async Task HandleAsync(SignedUp @event, CancellationToken cancellationToken = default)
         {
+            await Task.Delay(10000);
             await Task.CompletedTask;
         }
     }

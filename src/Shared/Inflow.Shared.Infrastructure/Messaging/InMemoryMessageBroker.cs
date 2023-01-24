@@ -12,12 +12,18 @@ namespace Inflow.Shared.Infrastructure.Messaging
     internal sealed class InMemoryMessageBroker : IMessageBroker
     {
         private readonly IModuleClient _moduleClient;
+        private readonly MessagingOptions _messagingOptions;
+        private readonly IAsyncMessageDispatcher _asyncMessageDispatcher;
         private readonly ILogger<InMemoryMessageBroker> _logger;
 
         public InMemoryMessageBroker(IModuleClient moduleClient,
+            IAsyncMessageDispatcher asyncMessageDispatcher,
+            MessagingOptions messagingOptions,
             ILogger<InMemoryMessageBroker> logger)
         {
             _moduleClient = moduleClient;
+            _messagingOptions = messagingOptions;
+            _asyncMessageDispatcher = asyncMessageDispatcher;
             _logger = logger;
         }
 
@@ -37,7 +43,10 @@ namespace Inflow.Shared.Infrastructure.Messaging
             if (!messages.Any())
                 return;
 
-            var tasks = messages.Select(x => _moduleClient.PublishAsync(x, cancellationToken));
+            var tasks = _messagingOptions.UseAsyncDispatcher
+                ? messages.Select(x => _asyncMessageDispatcher.PublishAsync(x, cancellationToken))
+                : messages.Select(x => _moduleClient.PublishAsync(x, cancellationToken));
+
             await Task.WhenAll(tasks);
         }
     }

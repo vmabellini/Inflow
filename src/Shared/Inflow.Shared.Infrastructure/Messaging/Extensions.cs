@@ -15,6 +15,16 @@ namespace Inflow.Shared.Infrastructure.Messaging
         public static IServiceCollection AddMessaging(this IServiceCollection services)
         {
             services.AddTransient<IMessageBroker, InMemoryMessageBroker>();
+            services.AddSingleton<IMessageChannel, MessageChannel>();
+            services.AddSingleton<IAsyncMessageDispatcher, AsyncMessageDispatcher>();
+
+            var options = services.GetOptions<MessagingOptions>("messaging");
+            services.AddSingleton(options);
+
+            if (options.UseAsyncDispatcher)
+            {
+                services.AddHostedService<AsyncDispatcherJob>();
+            }
 
             return services;
         }

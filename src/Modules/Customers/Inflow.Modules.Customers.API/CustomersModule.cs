@@ -1,5 +1,7 @@
 ﻿using Inflow.Modules.Customers.Core;
+using Inflow.Modules.Customers.Core.Events.External;
 using Inflow.Shared.Abstractions.Modules;
+using Inflow.Shared.Infrastructure.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -24,6 +26,9 @@ namespace Inflow.Modules.Customers.API
         public void Use(IApplicationBuilder app)
         {
             app.UseCore();
+
+            app.UseContracts()
+                .Register<SignedUpContract>();
         }
     }
 }

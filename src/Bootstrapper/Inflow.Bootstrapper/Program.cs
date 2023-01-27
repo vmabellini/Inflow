@@ -1,5 +1,6 @@
 using Inflow.Modules.Customers.API;
 using Inflow.Shared.Infrastructure;
+using Inflow.Shared.Infrastructure.Contracts;
 using Inflow.Shared.Infrastructure.Modules;
 
 var builder = WebApplication
@@ -24,6 +25,8 @@ foreach (var module in modules)
 {
     module.Use(app);
 }
+
+app.ValidateContracts(assemblies);
 
 app.UseRouting();
 app.UseAuthorization();

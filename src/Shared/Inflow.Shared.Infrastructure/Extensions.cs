@@ -5,6 +5,7 @@ using Inflow.Shared.Abstractions.Time;
 using Inflow.Shared.Infrastructure.Api;
 using Inflow.Shared.Infrastructure.Auth;
 using Inflow.Shared.Infrastructure.Commands;
+using Inflow.Shared.Infrastructure.Contracts;
 using Inflow.Shared.Infrastructure.Dispatchers;
 using Inflow.Shared.Infrastructure.Events;
 using Inflow.Shared.Infrastructure.Messaging;
@@ -63,6 +64,7 @@ namespace Inflow.Shared.Infrastructure
                 .AddPostgresOptions()
                 .AddModuleRequests(assemblies)
                 .AddSingleton<IClock, UtcClock>()
+                .AddContracts()
                 .AddControllers()
                 .ConfigureApplicationPartManager(manager =>
                 {
@@ -96,6 +98,22 @@ namespace Inflow.Shared.Infrastructure
             var options = new T();
             configuration.GetSection(sectionName).Bind(options);
             return options;
+        }
+
+
+        public static string GetModuleName(this object value)
+            => value?.GetType().GetModuleName() ?? string.Empty;
+
+        public static string GetModuleName(this Type type, string namespacePart = "Modules", int splitIndex = 2)
+        {
+            if (type?.Namespace is null)
+            {
+                return string.Empty;
+            }
+
+            return type.Namespace.Contains(namespacePart)
+                ? type.Namespace.Split(".")[splitIndex].ToLowerInvariant()
+                : string.Empty;
         }
     }
 }

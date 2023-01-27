@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Inflow.Modules.Customers.Core.Events.External
 {
-    internal record SignedUp(Guid UserId, string Email, string Role, int Age) : IEvent;
+    internal record SignedUp(Guid UserId, string Email, string Role) : IEvent;
 
     [Message("users")]
     internal class SignedUpContract : Contract<SignedUp>

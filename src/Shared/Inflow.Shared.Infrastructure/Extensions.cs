@@ -12,6 +12,7 @@ using Inflow.Shared.Infrastructure.Messaging;
 using Inflow.Shared.Infrastructure.Modules;
 using Inflow.Shared.Infrastructure.Postgres;
 using Inflow.Shared.Infrastructure.Queries;
+using Inflow.Shared.Infrastructure.Serialization;
 using Inflow.Shared.Infrastructure.Storage;
 using Inflow.Shared.Infrastructure.Time;
 using Microsoft.AspNetCore.Http;
@@ -55,6 +56,7 @@ namespace Inflow.Shared.Infrastructure
                 .AddHttpClient()
                 .AddSingleton<IRequestStorage, RequestStorage>()
                 .AddSingleton<IHttpContextAccessor, HttpContextAccessor>()
+                .AddSingleton<IJsonSerializer, SystemTextJsonSerializer>()
                 .AddAuth()
                 .AddCommands(assemblies)
                 .AddQueries(assemblies)

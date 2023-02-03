@@ -44,7 +44,6 @@ namespace Inflow.Modules.Customers.API.Controllers
         }
 
         [HttpPut("complete")]
-        [Authorize]
         public async Task<ActionResult> Post(CompleteCustomer command)
         {
             await _dispatcher.SendAsync(command);

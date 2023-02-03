@@ -34,6 +34,7 @@ namespace Inflow.Modules.Customers.Core.Domain.Entities
             Id = id;
             Email = email;
             CreatedAt = createdAt;
+            IsActive = true;
         }
 
         public void Complete(Name name, FullName fullName, Address address, Nationality nationality, Identity identity, DateTime completedAt)

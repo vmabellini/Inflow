@@ -2,6 +2,7 @@
 using Inflow.Modules.Customers.Core.Domain.Repositories;
 using Inflow.Modules.Customers.Core.Exceptions;
 using Inflow.Shared.Abstractions.Events;
+using Inflow.Shared.Abstractions.Messaging;
 using Inflow.Shared.Abstractions.Time;
 using Microsoft.Extensions.Logging;
 using System;
@@ -17,14 +18,17 @@ namespace Inflow.Modules.Customers.Core.Events.External.Handlers
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IClock _clock;
+        private readonly IMessageBroker _messageBroker;
         private readonly ILogger<SignedUpHandler> _logger;
 
         public SignedUpHandler(ICustomerRepository customerRepository,
             IClock clock,
+            IMessageBroker messageBroker,
             ILogger<SignedUpHandler> logger)
         {
             _customerRepository = customerRepository;
             _clock = clock;
+            _messageBroker = messageBroker;
             _logger = logger;
         }
 
@@ -45,6 +49,7 @@ namespace Inflow.Modules.Customers.Core.Events.External.Handlers
             var customer = new Customer(customerId, @event.Email, _clock.CurrentDate());
             await _customerRepository.AddAsync(customer, cancellationToken);
             _logger.LogInformation($"Created customer Id {customer.Id}");
+            await _messageBroker.PublishAsync(new CustomerCreated(customer.Id), cancellationToken);
         }
     }
 }

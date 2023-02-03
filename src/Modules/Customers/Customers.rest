@@ -1,5 +1,5 @@
 @url = http://localhost:5079/customers
-@customerId = 90bfbdf3-0d2f-4ebc-bca2-854c6d7935f8
+@customerId = e2cfeb92-8f99-4eaf-9b02-9901e99206b9
 
 ### CREATE A NEW CUSTOMER
 
@@ -7,9 +7,45 @@ POST {{url}}
 Content-Type: application/json
 
 {
-  "email": "user5@inflow.io"
+  "email": "user13@inflow.io"
 }
 
 ### GET CUSTOMER BY ID
 
 GET {{url}}/{{customerId}}
+
+
+###
+PUT {{url}}/complete
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "name": "user1",
+  "fullName": "John Doe",
+  "address": "Test street 123",
+  "nationality": "PL",
+  "identityType": "id_card",
+  "identitySeries": "ABC1234567"
+}
+
+###
+PUT {{url}}/{{customerId}}/verify
+Content-Type: application/json
+
+{
+}
+
+###
+PUT {{url}}/{{customerId}}/lock
+Content-Type: application/json
+
+{
+}
+
+###
+PUT {{url}}/{{customerId}}/unlock
+Content-Type: application/json
+
+{
+}

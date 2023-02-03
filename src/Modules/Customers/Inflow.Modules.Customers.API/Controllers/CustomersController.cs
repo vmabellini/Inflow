@@ -3,7 +3,11 @@ using Inflow.Modules.Customers.Core.DTO;
 using Inflow.Modules.Customers.Core.Queries;
 using Inflow.Shared.Abstractions.Commands;
 using Inflow.Shared.Abstractions.Dispatchers;
+using Inflow.Shared.Infrastructure.Api;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +40,35 @@ namespace Inflow.Modules.Customers.API.Controllers
         public async Task<ActionResult> Post(CreateCustomer command)
         {
             await _dispatcher.SendAsync(command);
+            return NoContent();
+        }
+
+        [HttpPut("complete")]
+        [Authorize]
+        public async Task<ActionResult> Post(CompleteCustomer command)
+        {
+            await _dispatcher.SendAsync(command);
+            return NoContent();
+        }
+
+        [HttpPut("{customerId:guid}/verify")]
+        public async Task<ActionResult> Post(Guid customerId, VerifyCustomer command)
+        {
+            await _dispatcher.SendAsync(command.Bind(x => x.CustomerId, customerId));
+            return NoContent();
+        }
+
+        [HttpPut("{customerId:guid}/lock")]
+        public async Task<ActionResult> Post(Guid customerId, LockCustomer command)
+        {
+            await _dispatcher.SendAsync(command.Bind(x => x.CustomerId, customerId));
+            return NoContent();
+        }
+
+        [HttpPut("{customerId:guid}/unlock")]
+        public async Task<ActionResult> Post(Guid customerId, UnlockCustomer command)
+        {
+            await _dispatcher.SendAsync(command.Bind(x => x.CustomerId, customerId));
             return NoContent();
         }
     }

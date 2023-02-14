@@ -25,14 +25,12 @@ internal class TransfersController : Controller
     }
         
     [HttpGet]
-    [Authorize(Policy)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<Paged<TransferDto>>> BrowseAsync([FromQuery] BrowseTransfers query)
         => Ok(await _dispatcher.QueryAsync(query));
 
     [HttpGet("{transferId:guid}")]
-    [Authorize(Policy)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -57,7 +55,6 @@ internal class TransfersController : Controller
         return NoContent();
     }
         
-    [Authorize(Policy)]
     [HttpPost("incoming")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -69,7 +66,6 @@ internal class TransfersController : Controller
         return NoContent();
     }
         
-    [Authorize(Policy)]
     [HttpPost("outgoing")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

@@ -11,6 +11,7 @@ using Inflow.Shared.Infrastructure.Events;
 using Inflow.Shared.Infrastructure.Messaging;
 using Inflow.Shared.Infrastructure.Modules;
 using Inflow.Shared.Infrastructure.Postgres;
+using Inflow.Shared.Infrastructure.Postgres.Decorators;
 using Inflow.Shared.Infrastructure.Queries;
 using Inflow.Shared.Infrastructure.Serialization;
 using Inflow.Shared.Infrastructure.Storage;
@@ -84,6 +85,8 @@ namespace Inflow.Shared.Infrastructure
 
                     manager.FeatureProviders.Add(new InternalControllerFeatureProvider());
                 });
+
+            services.TryDecorate(typeof(ICommandHandler<>), typeof(TransactionalCommandHandlerDecorator<>));
 
             return services;
         }

@@ -15,7 +15,8 @@ namespace Inflow.Shared.Infrastructure.Commands
             services
                 .AddSingleton<ICommandDispatcher, CommandDispatcher>()
                 .Scan(x => x.FromAssemblies(assemblies)
-                    .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<>)))
+                    .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<>))
+                        .WithoutAttribute<DecoratorAttribute>())
                     .AsImplementedInterfaces()
                     .WithScopedLifetime());
 

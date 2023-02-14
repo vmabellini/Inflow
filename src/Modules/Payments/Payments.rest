@@ -1,5 +1,6 @@
-@url = http://localhost:5000
-@depositId = 00000000-0000-0000-0000-000000000001
+@url = http://localhost:5079
+@customerId = be7ae22e-499a-4f92-86a4-7e01f767a7a8
+@depositId = dc39b2ea-ebab-429c-aa77-55cbdfee46d9
 @withdrawalIban = PL10105000997603123456789123
 
 
@@ -14,8 +15,9 @@ POST {{url}}/deposits
 Content-Type: application/json
 
 {
+  "customerId": "{{customerId}}",
   "currency": "PLN",
-  "amount": "1000"
+  "amount": "5000"
 }
 
 ###

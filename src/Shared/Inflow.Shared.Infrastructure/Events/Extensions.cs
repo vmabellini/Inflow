@@ -10,7 +10,8 @@ namespace Inflow.Shared.Infrastructure.Events
             services
                 .AddSingleton<IEventDispatcher, EventDispatcher>()
                 .Scan(x => x.FromAssemblies(assemblies)
-                    .AddClasses(c => c.AssignableTo(typeof(IEventHandler<>)))
+                    .AddClasses(c => c.AssignableTo(typeof(IEventHandler<>))
+                        .WithoutAttribute<DecoratorAttribute>())
                     .AsImplementedInterfaces()
                     .WithScopedLifetime());
 

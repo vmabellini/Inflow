@@ -16,7 +16,8 @@ namespace Inflow.Shared.Infrastructure.Queries
             services
                 .AddSingleton<IQueryDispatcher, QueryDispatcher>()
                 .Scan(x => x.FromAssemblies(assemblies)
-                    .AddClasses(c => c.AssignableTo(typeof(IQueryHandler<,>)))
+                    .AddClasses(c => c.AssignableTo(typeof(IQueryHandler<,>))
+                        .WithoutAttribute<DecoratorAttribute>())
                     .AsImplementedInterfaces()
                     .WithScopedLifetime());
 

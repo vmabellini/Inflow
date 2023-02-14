@@ -1,7 +1,8 @@
-@url = http://localhost:5000
+@url = http://localhost:5079
 @transferId = 00000000-0000-0000-0000-000000000001
-@walletId = 00000000-0000-0000-0000-000000000001
-@receiverWalletId = 00000000-0000-0000-0000-000000000001
+@ownerId = be7ae22e-499a-4f92-86a4-7e01f767a7a8
+@walletId = cf30faa3-99e8-4b08-9d91-05bb5da5cef5
+@receiverWalletId = 9174b699-b2c6-46a8-9ce6-4a691aeae4d0
 
 ###
 GET {{url}}/transfers
@@ -39,6 +40,7 @@ POST {{url}}/transfers/funds
 Content-Type: application/json
 
 {
+  "ownerId" : "{{ownerId}}",
   "ownerWalletId": "{{walletId}}",
   "receiverWalletId": "{{receiverWalletId}}",
   "currency": "PLN",

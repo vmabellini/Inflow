@@ -27,6 +27,7 @@ internal static class Extensions
             .AddScoped<ICorporateOwnerRepository, CorporateOwnerRepository>()
             .AddScoped<IIndividualOwnerRepository, IndividualOwnerRepository>()
             .AddScoped<IWalletRepository, WalletRepository>()
-            .AddPostgres<WalletsDbContext>();
+            .AddPostgres<WalletsDbContext>()
+            .AddUnitOfWork<WalletsUnitOfWork>();
     }
 }

@@ -1,5 +1,5 @@
 @url = http://localhost:5079/customers
-@customerId = e2cfeb92-8f99-4eaf-9b02-9901e99206b9
+@customerId = 2d8f2b98-19d6-4936-8b90-1027cf744425
 
 ### CREATE A NEW CUSTOMER
 
@@ -21,8 +21,8 @@ Content-Type: application/json
 
 {
   "customerId": "{{customerId}}",
-  "name": "user1",
-  "fullName": "John Doe",
+  "name": "cha2",
+  "fullName": "John Doee",
   "address": "Test street 123",
   "nationality": "PL",
   "identityType": "id_card",
@@ -48,4 +48,5 @@ PUT {{url}}/{{customerId}}/unlock
 Content-Type: application/json
 
 {
+  "notes" : "oi"
 }

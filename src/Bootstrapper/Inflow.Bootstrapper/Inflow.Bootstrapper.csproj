@@ -17,6 +17,7 @@
     <ProjectReference Include="..\..\Modules\Customers\Inflow.Modules.Customers.API\Inflow.Modules.Customers.API.csproj" />
     <ProjectReference Include="..\..\Modules\Payments\Inflow.Modules.Payments.Api\Inflow.Modules.Payments.Api.csproj" />
     <ProjectReference Include="..\..\Modules\Users\Inflow.Modules.Users.Api\Inflow.Modules.Users.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Wallets\Inflow.Modules.Wallets.Api\Inflow.Modules.Wallets.Api.csproj" />
     <ProjectReference Include="..\..\Shared\Inflow.Shared.Abstractions\Inflow.Shared.Abstractions.csproj" />
     <ProjectReference Include="..\..\Shared\Inflow.Shared.Infrastructure\Inflow.Shared.Infrastructure.csproj" />
   </ItemGroup>

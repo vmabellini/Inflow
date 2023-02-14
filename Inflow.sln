@@ -35,6 +35,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inflow.Modules.Payments.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inflow.Modules.Payments.Shared", "src\Modules\Payments\Inflow.Modules.Payments.Shared\Inflow.Modules.Payments.Shared.csproj", "{51A0E94B-B766-4E03-9358-09F5500E4014}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wallets", "Wallets", "{DDB21510-C08C-4FA1-89B1-3B154D47D4A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inflow.Modules.Wallets.Infrastructure", "src\Modules\Wallets\Inflow.Modules.Wallets.Infrastructure\Inflow.Modules.Wallets.Infrastructure.csproj", "{C6E6E5DD-94C4-404B-94ED-D411A20A86E4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inflow.Modules.Wallets.Core", "src\Modules\Wallets\Inflow.Modules.Wallets.Core\Inflow.Modules.Wallets.Core.csproj", "{E7979221-0288-46FC-9235-D00325C3BAC0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inflow.Modules.Wallets.Application", "src\Modules\Wallets\Inflow.Modules.Wallets.Application\Inflow.Modules.Wallets.Application.csproj", "{26224978-DFE5-497D-A144-9DC4B4563318}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inflow.Modules.Wallets.Api", "src\Modules\Wallets\Inflow.Modules.Wallets.Api\Inflow.Modules.Wallets.Api.csproj", "{4FDB437E-461C-4C48-9870-C2AC9D697646}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +91,22 @@ Global
 		{51A0E94B-B766-4E03-9358-09F5500E4014}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51A0E94B-B766-4E03-9358-09F5500E4014}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51A0E94B-B766-4E03-9358-09F5500E4014}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6E6E5DD-94C4-404B-94ED-D411A20A86E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6E6E5DD-94C4-404B-94ED-D411A20A86E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6E6E5DD-94C4-404B-94ED-D411A20A86E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6E6E5DD-94C4-404B-94ED-D411A20A86E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7979221-0288-46FC-9235-D00325C3BAC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7979221-0288-46FC-9235-D00325C3BAC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7979221-0288-46FC-9235-D00325C3BAC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7979221-0288-46FC-9235-D00325C3BAC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26224978-DFE5-497D-A144-9DC4B4563318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26224978-DFE5-497D-A144-9DC4B4563318}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26224978-DFE5-497D-A144-9DC4B4563318}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26224978-DFE5-497D-A144-9DC4B4563318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FDB437E-461C-4C48-9870-C2AC9D697646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FDB437E-461C-4C48-9870-C2AC9D697646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FDB437E-461C-4C48-9870-C2AC9D697646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FDB437E-461C-4C48-9870-C2AC9D697646}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +125,11 @@ Global
 		{EF21B128-7EB0-4988-9AA5-75CD543517C0} = {AFF86E11-32B6-4757-88EC-511321029AF4}
 		{419C895F-441C-4896-B010-6B8A9EF1B729} = {AFF86E11-32B6-4757-88EC-511321029AF4}
 		{51A0E94B-B766-4E03-9358-09F5500E4014} = {AFF86E11-32B6-4757-88EC-511321029AF4}
+		{DDB21510-C08C-4FA1-89B1-3B154D47D4A6} = {68930197-A279-4C66-AE69-A210EEE416D7}
+		{C6E6E5DD-94C4-404B-94ED-D411A20A86E4} = {DDB21510-C08C-4FA1-89B1-3B154D47D4A6}
+		{E7979221-0288-46FC-9235-D00325C3BAC0} = {DDB21510-C08C-4FA1-89B1-3B154D47D4A6}
+		{26224978-DFE5-497D-A144-9DC4B4563318} = {DDB21510-C08C-4FA1-89B1-3B154D47D4A6}
+		{4FDB437E-461C-4C48-9870-C2AC9D697646} = {DDB21510-C08C-4FA1-89B1-3B154D47D4A6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C4B75CF6-3FD4-494C-B53B-F8F5AF143F13}
